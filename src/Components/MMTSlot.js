@@ -9,7 +9,8 @@ export default function MMTSlot({infiniteSlotId, slotId, ...props}) {
     // imitate DOM modifying by ad script
     setTimeout(() => {
       const ad = document.createElement('center')
-      adSlotRef.current.replaceWith(ad)
+      adSlotRef.current.parentNode.appendChild(ad)
+      ad.appendChild(adSlotRef.current)
     }, 350)
   }, [])
   useEffect(() => {
