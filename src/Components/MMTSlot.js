@@ -35,12 +35,12 @@ export default function MMTSlot({infiniteSlotId, slotId, ...props}) {
     return null
   }
   return (
-    <>
+    <div>
       I am ad slot #{slotId}
       <div ref={adSlotRef} id={`mmt-${slotId}`} {...props} />
       {infiniteSlotId && (
         <div ref={infiniteSlotRef} className={infiniteSlotId} />
       )}
-    </>
+    </div>
   )
 }
