@@ -1,10 +1,19 @@
 import AppContext from 'Components/AppContext'
 import React, {useContext, useEffect, useRef} from 'react'
 
+let renderId = 0
+
+function getRenderId() {
+  renderId += 1
+  return renderId
+}
+
 export default function MMTSlot({infiniteSlotId, slotId, ...props}) {
   const {user} = useContext(AppContext)
   const adSlotRef = useRef()
   const infiniteSlotRef = useRef()
+  const renderIdRef = useRef(getRenderId())
+  console.log('render', slotId, renderIdRef.current)
   useEffect(() => {
     // imitate DOM modifying by ad script
     setTimeout(() => {
@@ -24,6 +33,7 @@ export default function MMTSlot({infiniteSlotId, slotId, ...props}) {
     mmtInfSc9945fff5ad15.cmd.push(infiniteSlotRef.current)
   }, [infiniteSlotId])
   useEffect(() => {
+    console.log('init', slotId, renderIdRef.current)
     window.$MMT = window.$MMT || {}
     const {$MMT} = window
     $MMT.cmd = $MMT.cmd || []
